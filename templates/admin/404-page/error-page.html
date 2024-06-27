@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veuz</title>
+    <link rel="shortcut icon" href="{% static 'assets/media/images/solo-fav-icon.png' %}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .pt-30 {
+            padding: 30px 0px;
+        }
+        .page-not-found-wrap{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    }
+        .page-not-found-wrap .page-inner-block img {
+            margin-bottom: 30px;
+        }
+
+        .page-not-found-wrap .page-inner-block h2 {
+            margin-bottom: 15px;
+            color: #02675f;
+            font-weight: 700;
+            font-size: 48px;
+
+        }
+.page-inner-block .inner-img-wrapper{
+    width: 240px;
+    height: 280px;
+    margin: 0 auto;
+}
+        .page-not-found-wrap .page-inner-block h3 {
+            margin-bottom: 15px;
+            color: #262626;
+            font-weight: 600;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        .page-not-found-wrap .page-inner-block {
+<!--            padding: 30px 0px;-->
+            color: #202c35;
+            font-weight: 500;
+            font-size: 18px;
+    padding-top: 90px;
+        }
+
+        .df-center {
+            display: flex;
+            align-items: center;
+        }
+
+        .page-not-found-wrap .page-inner-block .btn-primary {
+<!--            padding: 8px 20px;-->
+            margin: 0;
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
+            background-color: #32ad5c;
+            border: 2px solid transparent;
+            box-shadow: none;
+            transition: 0.3s;
+            border-radius: 0;
+        }
+
+        .page-not-found-wrap .page-inner-block img {
+            width: 100%;
+
+        }
+
+        .logo {
+           width: 200px;
+           position: absolute;
+           top: 30px;
+            left: 70px;
+             }
+        }
+
+        .page-not-found-wrap .page-inner-block .btn-primary:hover,
+        .page-not-found-wrap .page-inner-block .btn-primary:focus,
+        .page-not-found-wrap .page-inner-block .btn-primary:active {
+            background-color: #0fa88f;
+        }
+
+<!--        .page-not-found-wrap .page-inner-block .btn-primary svg {-->
+<!--            margin-right: 5px;-->
+<!--            margin-top: -3px;-->
+<!--        }-->
+
+        @media (max-width: 768px) {
+            .page-not-found-wrap .page-inner-block {
+                min-height: 600px;
+            }
+
+            .logo {
+                margin: 0 auto;
+                 left: 50%;
+                 margin-left: -100px;
+                 top:0px;
+            }
+
+            .page-not-found-wrap .page-inner-block .content-wrapper {
+                text-align: center;
+                padding-top: 70px;
+                padding-bottom: 50px;
+}
+            }
+ @media (max-width: 991px) {
+            .page-not-found-wrap .page-inner-block img {
+                margin: 0 auto;
+                margin-top: 70px;
+            }
+}
+ @media (max-width: 575px) {
+  .page-not-found-wrap .page-inner-block img {
+                margin: 0 auto;
+                margin-top: 80px;
+            }
+ }
+            .page-not-found-wrap .page-inner-block h2 {
+                font-size: 30px;
+            }
+
+            .page-not-found-wrap .page-inner-block h3 {
+                font-size: 22px;
+            }
+
+            .page-not-found-wrap .page-inner-block p {
+                font-size: 16px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .content-wrapper {
+                margin-left: 100px;
+            }
+
+            .page-not-found-wrap .page-inner-block h2 {
+                max-width: 444px;
+            }
+
+            .page-not-found-wrap .page-inner-block p {
+                max-width: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Main Content Starts -->
+    <div class="content">
+
+        <!-- 404 Page Starts -->
+        <section class="page-not-found-wrap">
+            <div class="container">
+                <div class="page-inner-block">
+                    <div class="row df-center">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4" style="margin-bottom:20px;">
+                            <div class="inner-img-wrapper">
+                                <img src="{% static 'assets/media/images/solo-logo.png' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+
+                    </div>
+                    <div class="row df-center" style="text-align:center; align-items:center;">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="content-wrapper" style="margin-left:0;">
+                                <h3 style="color:#03131e; font-size: 38px; font-weight:700;">Whoops!
+                                    Something went
+                                    Wrong</h3>
+
+                                <div style="font-size: 17px; font-weight:700; margin-bottom:15px;">Sorry, we can't seem to find the page you are looking for</div>
+                                <a class="btn btn-primary" href="http://{{ request.get_host }}" style="background-color:#06005a;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
+                                        class="bi bi-house-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z" />
+                                        <path
+                                            d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z" />
+                                    </svg>
+                                    HOME</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 40 Page Ends -->
+
+    </div>
+    <!-- Main Content Ends -->
+</body>
+
+</html>
+  

@@ -1,0 +1,198 @@
+{% extends 'admin/layouts/apps.html' %}
+{% load static %}
+
+
+{% block content %}
+
+	<!--begin::Content wrapper-->
+    <div class="d-flex flex-column flex-column-fluid">
+        
+        
+
+        {% include 'admin/layouts/breadcrumbs.html' %}
+
+
+
+
+        <!--begin::Content-->
+        <div id="kt_app_content" class="app-content flex-column-fluid">
+            <!--begin::Content container-->
+            <div id="kt_app_content_container" class="app-container container-xxl">
+                <!--begin::Form-->
+                <form id="create-or-update-admin-form" class="form d-flex flex-column flex-lg-row" method="POST" enctype="multipart/form-data" action="{% url 'employee:employee_settings_management.create' %}">
+                    {% csrf_token %}
+        
+                    <input type="hidden" name="employee_management_id" id="casestudy_id" value="{{employee_management_obj.id}}" />
+                    <!--begin::Aside column-->
+                    
+                    <!--end::Aside column-->
+                    <!--begin::Main column-->
+                    <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                        <!--begin:::Tabs-->
+                        <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-bold mb-n2">
+                            <!--begin:::Tab item-->
+                            <li class="nav-item">
+                                <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab" href="#create-or-update-admin-general">Employee Settings</a>
+                            </li>
+                            <!--end:::Tab item-->
+                        </ul>
+                        <!--end:::Tabs-->
+                        <!--begin::Tab content-->
+                        <div class="tab-content">
+                            <!--begin::Tab pane-->
+                            <div class="tab-pane fade show active" id="create-or-update-admin-general" role="tab-panel">
+                                <div class="d-flex flex-column gap-7 gap-lg-10">
+                                    <div class="card card-flush py-4">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h2>Employee Settings</h2>
+                                            </div>
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <!--begin::Repeater-->
+                                            {% if employee_settings_obj%}
+                                            <div id="kt_docs_repeater_basic-1 card ">
+                                                <!--begin::Form group-->
+                                                <div class="form-group-1  card border border-dark">
+                                                    <div data-repeater-list="kt_docs_repeater_basic-1">
+                                                        
+                                                        {% for employee in employee_settings_obj%}
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <div class="form-group row">
+                                                                    <div class="col-md-3">
+                                                                        <label class="form-label">Name:</label>
+                                                                        <input type="text" class="form-control mb-2 mb-md-0" placeholder="Enter full name" value="{{employee.name}}" disabled/>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <label class="form-label" for="form_select">Type</label>
+                                                                        <select class="form-select mb-2" data-handle-select-change="display_on" data-control="select2" data-hide-search="false" data-placeholder="Select Type" disabled>
+                                                                            <option {% if employee.field_type == "String" %} selected {% endif %} value="String">String</option>
+                                                                            <option {% if employee.field_type == "Number" %} selected {% endif %} value="Number">Number</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <label class="form-label">Value:</label>
+                                                                        <input type="text" class="form-control mb-2 mb-md-0" placeholder="Enter contact number" value="{{employee.value}}" disabled/>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <a href="javascript:;" data-repeater-delete class="btn btn-sm btn-light-danger mt-3 mt-md-8" disabled>
+                                                                            <i class="ki-duotone ki-trash fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                                                            Delete
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                                <!--end::Form group-->
+                                            </div>
+                                            {% endif %}
+                                            
+                                            <div id="kt_docs_repeater_basic">
+                                                <!--begin::Form group-->
+                                                <div class="form-group">
+                                                    <div data-repeater-list="kt_docs_repeater_basic">
+                                                        
+                                                        <div data-repeater-item>
+                                                            <div class="form-group row">
+                                                                <div class="col-md-3">
+                                                                    <label class="form-label">Name:</label>
+                                                                    <input type="text" class="form-control mb-2 mb-md-0" placeholder="Enter full name"/>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label class="form-label" for="form_select">Type</label>
+                                                                    <select select class="form-select mb-2" data-handle-select-change="display_on" data-control="select2"  data-hide-search="false" data-placeholder="Select Type">
+                                                                        <option></option>
+                                                                        <option value="String">String</option>
+                                                                        <option value="Number">Number</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label class="form-label">Value:</label>
+                                                                    <input type="text" class="form-control mb-2 mb-md-0" placeholder="Enter contact number"/>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <a href="javascript:;" data-repeater-delete class="btn btn-sm btn-light-danger mt-3 mt-md-8">
+                                                                        <i class="ki-duotone ki-trash fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                                                        Delete
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--end::Form group-->
+        
+                                                <!--begin::Form group-->
+                                                <div class="form-group mt-5">
+                                                    <a href="javascript:;" data-repeater-create class="btn btn-light-primary">
+                                                        <i class="ki-duotone ki-plus fs-3"></i>
+                                                        Add
+                                                    </a>
+                                                </div>
+                                                <!--end::Form group-->
+                                            </div>
+                                            <!--end::Repeater-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Tab pane-->
+                        </div>
+                        <!--end::Tab content-->
+                        <div class="d-flex justify-content-end">
+                            <!--begin::Button-->
+                            <a href="{% url 'employee:employee_management.index' %}" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">Cancel</a>
+                            <!--end::Button-->
+                            <!--begin::Button-->
+                            <button type="submit" id="create-or-update-admin-submit" class="btn btn-primary">
+                                <span class="indicator-label">Save</span>
+                            </button>
+                            <button type="button" id="banner-loader-text" class="indicator-progress btn btn-primary">
+                                <span class="">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                            <!--end::Button-->
+                        </div>
+                    </div>
+                    <!--end::Main column-->
+                </form>
+                <!--end::Form-->
+            </div>
+            <!--end::Content container-->
+        </div>
+        <!--end::Content-->
+    </div>
+    <!--end::Content wrapper-->
+	
+{% endblock content %}
+
+
+
+{% block script %}
+    <script>
+        $('#kt_docs_repeater_basic').repeater({
+            initEmpty: false,
+
+            defaultValues: {
+                'text-input': 'foo'
+            },
+
+            show: function () {
+                $(this).slideDown();
+            },
+
+            hide: function (deleteElement) {
+                $(this).slideUp(deleteElement);
+            }
+        });
+    </script>
+    <script src="{% static 'assets/js/custom/pages/home-page/employee-settings/create-or-update-employee-settings.js' %}?time={% now 'h:i:s' %}"></script>
+    
+
+
+{% endblock script %}
