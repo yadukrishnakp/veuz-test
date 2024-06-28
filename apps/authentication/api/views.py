@@ -7,8 +7,7 @@ from veuz_core.helpers.custom_messages import _account_tem_suspended,_invalid_cr
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib import auth
-from rest_framework.views import APIView
-from rest_framework_simplejwt.tokens import RefreshToken, OutstandingToken, BlacklistedToken
+from rest_framework_simplejwt.tokens import RefreshToken
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.permissions import IsAuthenticated
 import json
@@ -18,16 +17,8 @@ from apps.authentication.api.schemas import LoginSchema
 from veuz_core import settings
 from veuz_core.helpers.helper import DataEncryption
 from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
-from rest_framework import generics
 from veuz_core.helpers.custom_messages import _success
-from rest_framework import filters
-from apps.authentication.api.customer_mail import customer_registeration_mail_send
-import threading
-from veuz_core.helpers.mail_fuction import SendEmails
-from veuz_core.helpers.custom_messages import _success, _record_not_found
-from veuz_core.helpers.signer import URLEncryptionDecryption
-from django.contrib.auth.tokens import default_token_generator
-from django.http import JsonResponse
+from veuz_core.helpers.custom_messages import _success
 
 logger = logging.getLogger(__name__)
         

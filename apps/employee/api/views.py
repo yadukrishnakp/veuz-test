@@ -3,7 +3,6 @@ from apps.employee.api.schemas import EmployeeDetailsOrListingSchema
 from apps.employee.api.serializers import CreateOrUpdateEmployeeDetailsSerializer, DeleteEmployeeSerializer
 from apps.employee.models import EmployeeDetails
 from drf_yasg import openapi
-from rest_framework import filters
 from apps.users.models import Users
 from veuz_core.helpers.helper import get_object_or_none
 from veuz_core.helpers.response import ResponseInfo

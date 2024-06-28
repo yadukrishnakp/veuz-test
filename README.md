@@ -14,11 +14,6 @@ Follow these commands step by step
 
 
 ```python
-# clone git repository
-git clone https://wbgit.workbank.com/ushas/veuz_core-backend.git
-
-# move to project root diretory
-cd veuz_core
 
 # create virtual env
 python -m venv venv

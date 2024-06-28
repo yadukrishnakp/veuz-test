@@ -67,7 +67,6 @@ INSTALLED_APPS = [
 LOCAL_APPS = [
     'apps.users',
     'apps.home',
-    'apps.admins',
     'apps.authentication',
     'apps.employee',
 ]

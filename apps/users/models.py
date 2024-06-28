@@ -1,4 +1,4 @@
-from phonenumber_field.modelfields import PhoneNumber, PhoneNumberField
+from phonenumber_field.modelfields import PhoneNumberField
 from django.db import models
 from .validators import validate_possible_number
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
@@ -6,7 +6,6 @@ from django.utils.translation import gettext as _
 from django_acl.models import Group,Role
 from django.utils.text import slugify
 from random import randint
-from veuz_core.helpers.acl_backend import ACLBaseBackend
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.models import (
     AbstractBaseUser,
@@ -64,17 +63,6 @@ class UserManager(BaseUserManager):
         
         return self.create_user(email, password, **extra_fields)
 
-def _user_acl_has_perm(user, perm, obj):
-    
-    """
-    A backend can raise `PermissionDenied` to short-circuit permission checking.
-    """
-    try:
-        if ACLBaseBackend().has_acl_perm(user_obj=user, perm=perm, obj=obj) or user.is_superuser:
-            return True
-    except PermissionDenied:
-        return False
-    return False
 
 class Users(AbstractBaseUser, PermissionsMixin):
     USER_TYPES = [
@@ -128,15 +116,4 @@ class Users(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
-    # For checking permissions. to keep it simple all admin have ALL permissons
-    def has_acl_perms(self, perm, obj = None):
-        return _user_acl_has_perm(self, perm, obj=obj)
-    # For checking permissions. to keep it simple all admin have ALL permissons
-    def has_perm(self, perm, obj = None):
-        "Does the user have a specific permission?"
-        return self.is_admin
-
-    # Does this user have permission to view this app? (ALWAYS YES FOR SIMPLICITY)
-    def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app `app_label`?"
-        return True
+    

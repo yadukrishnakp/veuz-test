@@ -50,15 +50,12 @@ urlpatterns = [
     path('', include('apps.home.urls')),
     path('users/', include('apps.users.urls')),
     path('auth/', include('apps.authentication.urls')),
-    path('admins/', include('apps.admins.urls')),
     path('employee/', include('apps.employee.urls')),    
     
     
     re_path(r'^api/', include([
         
         path('auth/', include('apps.authentication.api.urls')),
-        path('users/', include('apps.users.api.urls')),
-        path('home/', include('apps.home.api.urls')),
         path('employee/', include('apps.employee.api.urls')),
     
         re_path(r'^docs/', include([

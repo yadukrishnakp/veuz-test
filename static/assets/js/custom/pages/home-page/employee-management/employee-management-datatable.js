@@ -88,7 +88,6 @@ var DatatablesServerSide = function() {
                     render: function (data, type, row) {
                         let settings_edit_url = api_config.settings_edit_url.replace('0', row.encrypt_id.toString());
                         return `
-                                <div class="d-flex justify-content-center flex-shrink-0">
                                     <a href="${settings_edit_url}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
                                         <span class="svg-icon svg-icon-3">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
