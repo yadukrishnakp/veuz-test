@@ -9,7 +9,7 @@ from django.contrib.auth.hashers import make_password
 
 logger = logging.getLogger(__name__)
 
-
+# Login Section
 class LoginView(View):
 
     def __init__(self):
@@ -26,6 +26,7 @@ class LoginView(View):
             
             email    = request.POST.get('email')
             password = request.POST.get('password')
+            # Checking authentication
             user     = authenticate(email=email, password=password)
             if user is not None:
                 login(request, user)
@@ -41,13 +42,13 @@ class LoginView(View):
         return JsonResponse(self.response_format, status=200)
 
 
-
+# Log out section
 def signout(request):
     logout(request)
     return redirect('authentication:login')
 
 
-
+# User Registration section
 class RegistrationView(View):
 
     def __init__(self):
@@ -61,6 +62,7 @@ class RegistrationView(View):
     def post(self, request, *args, **kwargs):
     
         try:
+            # Creating New user instance with follwing informations
             user_instance = Users()
             user_instance.full_name     = request.POST.get('name')
             user_instance.email    = request.POST.get('email')

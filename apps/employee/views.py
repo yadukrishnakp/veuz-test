@@ -14,6 +14,7 @@ from django.http import JsonResponse
 from uuid import uuid4
 # Create your views here.
 
+# List view for employee data
 class EmployeeManagementView(View):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -21,8 +22,7 @@ class EmployeeManagementView(View):
         self.template = 'admin/home-page/employee-management/employee-list.html'
         self.context['title'] = 'Employee Management'
         self.generateBreadcrumbs()
-        
-        
+          
     def get(self, request, *args, **kwargs):
         return render(request, self.template, context=self.context)
 
@@ -31,7 +31,7 @@ class EmployeeManagementView(View):
         self.context['breadcrumbs'].append({"name" : "Employee Management", "route" : '','active' : True})
         
 
-
+# Load data to datatables
 class LoadEmployeeManagementDatatable(BaseDatatableView):
     model = EmployeeDetails
     order_columns = ['id']
@@ -45,7 +45,7 @@ class LoadEmployeeManagementDatatable(BaseDatatableView):
             base_filter = Q(created_by=user_instance)
         else:
             base_filter = Q()
-
+        # Filter values to with active, inactive and all
         filter_value = self.request.POST.get('columns[3][search][value]', None)
 
         if filter_value == '1':
@@ -63,6 +63,7 @@ class LoadEmployeeManagementDatatable(BaseDatatableView):
         return queryset
     
     def filter_queryset(self, qs):
+        # This is for seaching data
         search = self.request.POST.get('search[value]', None)
         if search:
             qs = qs.filter(Q(name__istartswith=search) | Q(email__istartswith=search) | Q(phonenumber__istartswith=search))
@@ -83,6 +84,8 @@ class LoadEmployeeManagementDatatable(BaseDatatableView):
             })
         return json_data
 
+
+# Create Employees
 class EmployeeManagementCreateOrUpdateView(View):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -101,15 +104,16 @@ class EmployeeManagementCreateOrUpdateView(View):
         self.generateBreadcrumbs()
         return render(request, self.template, context=self.context)
 
+    # Show Breadcrubs
     def generateBreadcrumbs(self):
         self.context['breadcrumbs'].append({"name": "Home", "route": reverse('home:dashboard'), 'active': False})
         self.context['breadcrumbs'].append(
             {"name": "Employee Management", "route": reverse('employee:employee_management.index'), 'active': False})
         self.context['breadcrumbs'].append({"name": "{} Employee Management".format(self.action), "route": '', 'active': True})
 
+    # Create and update employees
     def post(self, request, *args, **kwargs):
         employee_management_id    = request.POST.get('employee_management_id', None)
-        print("9999999999999999999999999999999999")
         try:
             if employee_management_id:
                 self.action = 'Updated'
@@ -134,6 +138,7 @@ class EmployeeManagementCreateOrUpdateView(View):
         return redirect('employee:employee_management.index')
 
 
+# Delete data in datatables
 class DestroyEmployeeManagementRecordsView(View):
     def __init__(self, **kwargs):
         self.response_format = {"status_code": 101, "message": "", "error": ""}
@@ -151,7 +156,8 @@ class DestroyEmployeeManagementRecordsView(View):
             
         return JsonResponse(self.response_format, status=200)
     
-    
+
+# Used to change status of list data
 class EmployeeManagementStatusChange(View):
     def __init__(self, **kwargs):
         self.response_format = {"status_code":101, "message":"", "error":""}
@@ -175,6 +181,7 @@ class EmployeeManagementStatusChange(View):
         return JsonResponse(self.response_format, status=200)
     
 
+# Creating settings for all Employees
 class SettingsManagementCreateOrUpdateView(View):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -186,8 +193,6 @@ class SettingsManagementCreateOrUpdateView(View):
 
     def get(self, request, *args, **kwargs):
         id = URLEncryptionDecryption.dec(kwargs.pop('id', None))
-        print("111111111111111111111111111", id)
-        # import pdb;pdb.set_trace()
         self.context['uuid'] = uuid4()
         if id:
             self.action = "Update"
@@ -206,9 +211,14 @@ class SettingsManagementCreateOrUpdateView(View):
     def post(self, request, *args, **kwargs):
         try:
             employee_management_id    = request.POST.get('employee_management_id', None)
+
+            # converting list from dict
             repeater_data = json.loads(request.POST.get('repeater_data', '[]'))
+
+            # Delete all the data of curresponding id
             EmployeeSettings.objects.filter(employee_details_id=employee_management_id).delete()
-            print("111111111111111110", repeater_data)
+
+            # inserting new data to database
             for repeater in repeater_data:
                 employee_settings_obj = EmployeeSettings()
 

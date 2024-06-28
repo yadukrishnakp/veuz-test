@@ -71,7 +71,6 @@ var MCUpdateOrCreateAdmin = function () {
 
                     if (status == 'Valid') {
                         const repeaterData = [];
-                        debugger;
                         document.querySelectorAll('[data-repeater-item]').forEach(item => {
                             const name = item.querySelector('input[type="text"]').value;
                             const type = item.querySelector('select').value;

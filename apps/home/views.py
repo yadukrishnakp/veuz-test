@@ -5,6 +5,7 @@ from django.views import View
 logger = logging.getLogger(__name__)
 
 
+# Used to show dashboard and its values
 class HomeView(View):
     def __init__(self):
         self.context = {}

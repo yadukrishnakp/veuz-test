@@ -15,7 +15,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q
 # Create your views here.
 
-
+# Used to create employees 
 class CreateorUpdateEmployeeApiView(generics.GenericAPIView):
     def __init__(self, **kwargs):
         self.response_format = ResponseInfo().response
@@ -61,6 +61,7 @@ class CreateorUpdateEmployeeApiView(generics.GenericAPIView):
             return Response(self.response_format, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
+# Used to all the employees and individual employees
 class GetEmployeeDetailsOrListApiView(generics.GenericAPIView):
     def __init__(self, **kwargs):
         self.response_format = ResponseInfo().response
@@ -102,6 +103,7 @@ class GetEmployeeDetailsOrListApiView(generics.GenericAPIView):
             return Response(self.response_format, status=status.HTTP_500_INTERNAL_SERVER_ERROR) 
         
 
+# Used to delete employees
 class DeleteEmployeeAPIView(generics.DestroyAPIView): 
     def __init__(self, **kwargs):
         self.response_format = ResponseInfo().response
