@@ -1,6 +1,6 @@
 # veuz_core New Site 
 
-A Data entry platform to capture unstructured data into structured data files. The platform will have complete Job allocation, data entry, monitoring and reporting functionality.
+This App used for User registration and login, the user can create new employees and its settings.
 
 # Project Requirements
 ```
